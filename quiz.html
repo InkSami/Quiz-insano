@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Mi Quiz</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e1e2f;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+
+        #pregunta {
+            font-size: 24px;
+            margin: 30px 0;
+        }
+
+        button {
+            display: block;
+            width: 80%;
+            max-width: 400px;
+            margin: 15px auto;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: scale(1.03);
+        }
+
+        #resultado {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Quiz insano ozioziozi</h1>
+
+    <p id="pregunta">¿Cuando regalaron a Edgar?</p>
+
+    <button id="opcion0" onclick="responder(this.textContent)"></button>
+
+    <button id="opcion1" onclick="responder(this.textContent)"></button>
+
+    <button id="opcion2" onclick="responder(this.textContent)"></button>
+
+    <p id="resultado"></p>
+
+
+    <script>
+
+        let preguntaActual = 0;
+
+        let preguntaFinalActiva = false;
+
+
+        let preguntas = [
+            "¿Cuál es la capital de Guatemala?",
+            "¿Gus requiere skill?",
+            "¿Como se llama el lugar donde estan atrapados los brawlers?",
+            "¿Cual es la maestria de Sandy?",
+            "Si un kit nivel 11 tiene la estelar de que cada cubo lo potencia un 150% y tiene 5 cubos de fuerza, estando hipercargado ¿cuanto daño hara?"
+        ];
+
+
+        let respuestas = [
+            "Navidad 2020",
+            "Con buffies no",
+            "Star park",
+            "Marmotilla",
+            "3600"
+        ];
+
+
+        let opciones = [
+            ["Navidad 2020", "Navidad 2021", "No lo regalaron"],
+            ["No, nunca", "Si, mucha", "Con buffies no"],
+            ["Star patroll", "Star park", "Centry Star"],
+            ["Dulces sueños", "Dormilon", "Marmotilla"],
+            ["3600", "Ni idea", "3900"]
+        ];
+
+
+        let preguntaFinal = "Estaba tratando de mentalizarme pero no pude, soy una mrd pero aja, aqui esta la pregunta.";
+
+
+        document.getElementById("opcion0").textContent =
+            opciones[0][0];
+
+        document.getElementById("opcion1").textContent =
+            opciones[0][1];
+
+        document.getElementById("opcion2").textContent =
+            opciones[0][2];
+
+
+        function responder(respuesta) {
+
+
+            // PREGUNTA FINAL
+
+            if (preguntaFinalActiva == true) {
+
+                return;
+
+            }
+
+
+            // PREGUNTAS NORMALES
+
+            if (respuesta == respuestas[preguntaActual]) {
+
+                document.getElementById("resultado").textContent =
+                    "Correcto, que pro 🙀";
+
+                preguntaActual++;
+
+
+                // TODAVÍA QUEDAN PREGUNTAS
+
+                if (preguntaActual < preguntas.length) {
+
+                    document.getElementById("pregunta").textContent =
+                        preguntas[preguntaActual];
+
+                    document.getElementById("opcion0").textContent =
+                        opciones[preguntaActual][0];
+
+                    document.getElementById("opcion1").textContent =
+                        opciones[preguntaActual][1];
+
+                    document.getElementById("opcion2").textContent =
+                        opciones[preguntaActual][2];
+
+                }
+
+
+                // TERMINÓ LAS 5 PREGUNTAS
+
+                else {
+
+                    preguntaFinalActiva = true;
+
+                    document.getElementById("pregunta").textContent =
+                        preguntaFinal;
+
+                    document.getElementById("opcion0").style.display =
+                        "none";
+
+                    document.getElementById("opcion1").style.display =
+                        "none";
+
+                    document.getElementById("opcion2").style.display =
+                        "none";
+
+                    document.getElementById("resultado").textContent =
+                        "Si yo llegara a enamorarte ya sea cuando se acaben las clases o en 5to bach, saldrias conmigo? Se que puede sonar una pregunta demasiado tonta como para haber hecho este quiz, pero en pocas palabras, a mi tu me atraes tambien y ya que tu tambien habias dicho que yo te gustaba, me gustaria salir contigo pero se que salir en tiempos de estudios no es de las mejores opciones, asi que, ¿tu me esperaias hasta que ambos tengamos 18 y poder estar juntos?";
+
+                }
+
+            }
+
+
+            // RESPUESTA INCORRECTA
+
+            else {
+
+                alert(
+                    "Fallaste nuv, empieza de nuevo 😹😹"
+                );
+
+                preguntaActual = 0;
+
+                preguntaFinalActiva = false;
+
+                document.getElementById("pregunta").textContent =
+                    preguntas[0];
+
+                document.getElementById("opcion0").style.display =
+                    "inline-block";
+
+                document.getElementById("opcion1").style.display =
+                    "inline-block";
+
+                document.getElementById("opcion2").style.display =
+                    "inline-block";
+
+                document.getElementById("opcion0").textContent =
+                    opciones[0][0];
+
+                document.getElementById("opcion1").textContent =
+                    opciones[0][1];
+
+                document.getElementById("opcion2").textContent =
+                    opciones[0][2];
+
+                document.getElementById("resultado").textContent =
+                    "";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
